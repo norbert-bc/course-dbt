@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "course-dbt"
+version = "0.1.0"
+description = ""
+authors = ["norbert-bc <norbert.bereczki@icloud.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+dbt-core = "^1.7.10"
+dbt-snowflake = "^1.7.2"
+dbt-postgres = "^1.7.10"
+dbt-redshift = "^1.7.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

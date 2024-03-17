@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_users
+    description: Users
+  - name: stg_addresses
+    description: Addresses
+  - name: stg_events
+    description: Events
+  - name: stg_order_items
+    description: Order items
+  - name: stg_orders
+    description: Orders
+  - name: stg_products
+    descriptino: Products
+  - name: stg_promos
+    description: Promos
