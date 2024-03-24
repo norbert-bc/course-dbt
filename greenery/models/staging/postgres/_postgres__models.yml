@@ -3,15 +3,35 @@ version: 2
 models:
   - name: stg_users
     description: Users
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+      - name: email
+        tests:
+          - unique
+          - not_null
   - name: stg_addresses
     description: Addresses
   - name: stg_events
     description: Events
   - name: stg_order_items
     description: Order items
+    columns:
+      - name: quantity
+        tests:
+          - positive_values
   - name: stg_orders
     description: Orders
   - name: stg_products
     descriptino: Products
+    columns:
+      - name: inventory
+        tests:
+          - positive_values
+      - name: price
+        tests:
+          - positive_values
   - name: stg_promos
     description: Promos

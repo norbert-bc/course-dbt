@@ -33,3 +33,5 @@ Explain the product mart models you added. Why did you organize the models in th
 
 * I've joined together with products in order to be able to respond to some questions like: What are daily page views by product? Daily orders by product?
 
+Your stakeholders at Greenery want to understand the state of the data each day. Explain how you would ensure these tests are passing regularly and how you would alert stakeholders about bad data getting through.
+- We can ensure the data is not incosistent with what we assume by running each day automated tests that will notify us upon failure.
