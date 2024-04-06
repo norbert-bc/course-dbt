@@ -1,0 +1,85 @@
+version: 2
+
+models:
+  - name: fact_page_views
+    description: "Aggregated count of page view events by user and session."
+    columns:
+      - name: user_id
+        description: "Unique identifier for the user."
+        tests:
+          - not_null
+      - name: session_id
+        description: "Unique identifier for the user session."
+        tests:
+          - unique
+          - not_null
+      - name: page_view_count
+        description: "Total number of page views per session."
+        tests:
+          - not_null
+
+  - name: fact_add_to_cart
+    description: "Aggregated count of add-to-cart events by user and session."
+    columns:
+      - name: user_id
+        description: "Unique identifier for the user."
+        tests:
+          - not_null
+      - name: session_id
+        description: "Unique identifier for the user session."
+        tests:
+          - unique
+          - not_null
+      - name: add_to_cart_count
+        description: "Total number of add-to-cart events per session."
+        tests:
+          - not_null
+
+  - name: fact_checkout
+    description: "Aggregated count of checkout events by user and session."
+    columns:
+      - name: user_id
+        description: "Unique identifier for the user."
+        tests:
+          - not_null
+      - name: session_id
+        description: "Unique identifier for the user session."
+        tests:
+          - unique
+          - not_null
+      - name: checkout_count
+        description: "Total number of checkout events per session."
+        tests:
+          - not_null
+
+  - name: funnel_step_counts
+    description: "Joins page view, add to cart, and checkout events to analyze the funnel by session."
+    columns:
+      - name: user_id
+        description: "Unique identifier for the user."
+        tests:
+          - not_null
+      - name: session_id
+        description: "Unique identifier for the user session."
+        tests:
+          - not_null
+      - name: page_view_count
+        description: "Total number of page views per session."
+      - name: add_to_cart_count
+        description: "Total number of add-to-cart events per session."
+      - name: checkout_count
+        description: "Total number of checkout events per session."
+    tests:
+      - less_than_or_equal:
+          smaller_column: "add_to_cart_count"
+          larger_column: "page_view_count"
+
+  - name: conversion_rate
+    description: "Conversion rate table."
+    columns:
+      - name: page_view_to_add_to_cart_conversion
+      - name: add_to_card_to_checkout_conversion
+    tests:
+      - less_than_or_equal:
+          smaller_column: "add_to_card_to_checkout_conversion"
+          larger_column: "page_view_to_add_to_cart_conversion"
